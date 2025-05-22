@@ -9,14 +9,14 @@ class Main extends React.Component {
         loading: true,
     };
     componentDidMount() {
-        fetch('http://www.omdbapi.com/?apikey=9faa9255&s=pirates')
+        fetch('https://www.omdbapi.com/?apikey=9faa9255&s=pirates')
         .then((response) => response.json())
         .then((data) => this.setState({ movies: data.Search, loading: false }));
     }
 
     searchMovies = (str, type = "all") => {
         fetch(
-            `http://www.omdbapi.com/?apikey=9faa9255&s=${str}${
+            `https://www.omdbapi.com/?apikey=9faa9255&s=${str}${
                 type !== "all" ? `&type=${type}` : ""
             }`
         )
@@ -27,10 +27,10 @@ class Main extends React.Component {
     render() {
         const { movies, loading } = this.state;
 
-        return <main className="container content">
+        return (<main className="container content">
             < Search searchMovies={this.searchMovies} />
             {loading ? <Preloader /> : <Movies movies={this.state.movies} />}
-        </main>
+        </main>);
     }
 }
 
